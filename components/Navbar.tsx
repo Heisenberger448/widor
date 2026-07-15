@@ -14,11 +14,11 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { href: '#diensten', label: 'Diensten' },
-    { href: '#projecten', label: 'Projecten' },
-    { href: '#over-ons', label: 'Over ons' },
-    { href: '#reviews', label: 'Reviews' },
-    { href: '#contact', label: 'Contact' },
+    { href: '/#diensten', label: 'Diensten' },
+    { href: '/#projecten', label: 'Projecten' },
+    { href: '/#over-ons', label: 'Over ons' },
+    { href: '/#reviews', label: 'Reviews' },
+    { href: '/#contact', label: 'Contact' },
   ];
 
   return (
@@ -64,7 +64,7 @@ export default function Navbar() {
               06-00 000 000
             </a>
             <a
-              href="#contact"
+              href="/#contact"
               className="bg-[#f59e0b] hover:bg-[#d97706] text-gray-900 font-bold text-sm px-5 py-2.5 rounded-md transition-colors duration-200"
             >
               Gratis offerte
@@ -104,7 +104,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="#contact"
+                href="/#contact"
                 className="bg-[#f59e0b] hover:bg-[#d97706] text-gray-900 font-bold px-5 py-3 rounded-md text-center mt-2"
                 onClick={() => setIsOpen(false)}
               >

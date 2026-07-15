@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { services } from './servicesData';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -28,18 +31,14 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-sm uppercase tracking-wider mb-4 text-[#f59e0b]">Diensten</h4>
             <ul className="space-y-2">
-              {[
-                'Binnenschilderwerk',
-                'Buitenschilderwerk',
-                'Latex spuitwerk',
-                'Renovlies behangen',
-                'Onderhoudsschilderwerk',
-                'Bedrijfspanden',
-              ].map((item) => (
-                <li key={item}>
-                  <a href="#diensten" className="text-white/60 hover:text-white text-sm transition-colors">
-                    {item}
-                  </a>
+              {services.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    href={`/diensten/${service.slug}`}
+                    className="text-white/60 hover:text-white text-sm transition-colors"
+                  >
+                    {service.title}
+                  </Link>
                 </li>
               ))}
             </ul>

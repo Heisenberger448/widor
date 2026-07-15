@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+  <!-- White = photo visible. The left (diagonal) edge is roughened into a brush sweep. -->
+  <filter id="brush" x="-30%" y="-10%" width="160%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.016 0.09" numOctaves="3" seed="11" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="34" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+
+  <g filter="url(#brush)">
+    <!-- diagonal boundary: top ~x38, bottom ~x4  → slopes down to the left -->
+    <polygon points="38,-10 115,-10 115,110 4,110" fill="#ffffff"/>
+
+    <!-- trailing bristle streaks reaching left into the blue -->
+    <g fill="#ffffff">
+      <rect x="8"  y="14" width="26" height="2.6" rx="1.3" transform="rotate(-9 21 15)"/>
+      <rect x="4"  y="33" width="24" height="2.2" rx="1.1" transform="rotate(-7 16 34)"/>
+      <rect x="2"  y="52" width="22" height="2.8" rx="1.4" transform="rotate(-6 13 53)"/>
+      <rect x="0"  y="70" width="20" height="2.2" rx="1.1" transform="rotate(-5 10 71)"/>
+      <rect x="-2" y="86" width="18" height="2.5" rx="1.2" transform="rotate(-4 7 87)"/>
+    </g>
+  </g>
+</svg>

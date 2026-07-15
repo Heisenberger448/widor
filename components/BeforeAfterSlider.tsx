@@ -1,30 +1,52 @@
 'use client';
 
 import { useRef, useState, useCallback, useEffect } from 'react';
+import Link from 'next/link';
 
 interface BeforeAfterSliderProps {
   title: string;
   description?: string;
+  /** When set, an orange "Bekijk project" link is shown that navigates to this project page */
+  href?: string;
   beforeLabel?: string;
   afterLabel?: string;
   beforeBg?: string;
   afterBg?: string;
+  beforeImage?: string;
+  afterImage?: string;
+  /** Extra classes on the "after" image — e.g. a subtle scale so near-identical before/after photos don't line up perfectly */
+  afterImageClassName?: string;
   initialPosition?: number;
 }
 
 export default function BeforeAfterSlider({
   title,
   description,
+  href,
   beforeLabel = 'Voor',
   afterLabel = 'Na',
   beforeBg = 'bg-gray-300',
   afterBg = 'bg-blue-200',
+  beforeImage,
+  afterImage,
+  afterImageClassName = '',
   initialPosition = 50,
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(initialPosition);
   const [isDragging, setIsDragging] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  // Track the slider width so the clipped "before" image stays aligned with the "after" image
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    setContainerWidth(el.getBoundingClientRect().width);
+    const ro = new ResizeObserver((entries) => setContainerWidth(entries[0].contentRect.width));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const updatePosition = useCallback((clientX: number) => {
     if (!containerRef.current) return;
@@ -68,7 +90,7 @@ export default function BeforeAfterSlider({
   }, [isDragging, updatePosition]);
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-full">
       {/* Slider area */}
       <div
         ref={containerRef}
@@ -77,14 +99,23 @@ export default function BeforeAfterSlider({
         onTouchStart={handleTouchStart}
       >
         {/* After image (full width, background) */}
-        <div className={`absolute inset-0 ${afterBg} flex items-center justify-center`}>
-          {/* Placeholder: replace with <Image src="/after.jpg" ... /> */}
-          <div className="text-center pointer-events-none">
-            <svg width="48" height="48" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" viewBox="0 0 24 24" className="mx-auto mb-2">
-              <path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/>
-            </svg>
-            <p className="text-white/70 text-sm font-medium">Na foto</p>
-          </div>
+        <div className="absolute inset-0">
+          {afterImage ? (
+            <img
+              src={afterImage}
+              alt={`${title} — na`}
+              className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${afterImageClassName}`}
+            />
+          ) : (
+            <div className={`absolute inset-0 ${afterBg} flex items-center justify-center`}>
+              <div className="text-center pointer-events-none">
+                <svg width="48" height="48" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" viewBox="0 0 24 24" className="mx-auto mb-2">
+                  <path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/>
+                </svg>
+                <p className="text-white/70 text-sm font-medium">Na foto</p>
+              </div>
+            </div>
+          )}
           {/* After label bottom */}
           <div className="absolute bottom-4 right-4 bg-[#1a3a6b] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow">
             {afterLabel}
@@ -96,15 +127,23 @@ export default function BeforeAfterSlider({
           className="absolute inset-0 overflow-hidden"
           style={{ width: `${position}%` }}
         >
-          <div className={`absolute inset-0 ${beforeBg} flex items-center justify-center`}>
-            {/* Placeholder: replace with <Image src="/before.jpg" ... /> */}
-            <div className="text-center pointer-events-none" style={{ width: '100vw', maxWidth: '100%' }}>
-              <svg width="48" height="48" fill="none" stroke="rgba(100,100,100,0.5)" strokeWidth="1.5" viewBox="0 0 24 24" className="mx-auto mb-2">
-                <path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/>
-              </svg>
-              <p className="text-gray-500 text-sm font-medium">Voor foto</p>
+          {beforeImage ? (
+            <img
+              src={beforeImage}
+              alt={`${title} — voor`}
+              className="absolute inset-0 h-full max-w-none object-cover pointer-events-none"
+              style={{ width: containerWidth ? `${containerWidth}px` : '100%' }}
+            />
+          ) : (
+            <div className={`absolute inset-0 ${beforeBg} flex items-center justify-center`}>
+              <div className="text-center pointer-events-none" style={{ width: '100vw', maxWidth: '100%' }}>
+                <svg width="48" height="48" fill="none" stroke="rgba(100,100,100,0.5)" strokeWidth="1.5" viewBox="0 0 24 24" className="mx-auto mb-2">
+                  <path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/>
+                </svg>
+                <p className="text-gray-500 text-sm font-medium">Voor foto</p>
+              </div>
             </div>
-          </div>
+          )}
           {/* Before label bottom */}
           <div className="absolute bottom-4 left-4 bg-gray-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow">
             {beforeLabel}
@@ -140,9 +179,20 @@ export default function BeforeAfterSlider({
       </div>
 
       {/* Card info */}
-      <div className="p-5">
+      <div className="p-5 flex flex-col flex-1">
         <h3 className="font-bold text-[#1a3a6b] text-lg">{title}</h3>
         {description && <p className="text-gray-500 text-sm mt-1">{description}</p>}
+        {href && (
+          <Link
+            href={href}
+            className="mt-auto pt-4 self-start inline-flex items-center gap-1.5 text-[#f59e0b] font-bold text-sm hover:gap-2.5 transition-all"
+          >
+            Bekijk project
+            <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+        )}
       </div>
     </div>
   );

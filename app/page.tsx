@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import BrandSlider from "@/components/BrandSlider";
 import Services from "@/components/Services";
 import BeforeAfterSection from "@/components/BeforeAfterSection";
 import About from "@/components/About";
@@ -13,6 +14,7 @@ export default function Home() {
       <Navbar />
       <main className="flex flex-col">
         <Hero />
+        <BrandSlider />
         <Services />
         <BeforeAfterSection />
         <About />

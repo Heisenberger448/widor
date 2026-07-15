@@ -1,28 +1,6 @@
+import Link from 'next/link';
 import BeforeAfterSlider from './BeforeAfterSlider';
-
-const projects = [
-  {
-    title: 'Buitenkozijnen woning Delft',
-    description: 'Volledig herschilderwerk van kozijnen, dakgoot en voordeur. Resultaat: als nieuw.',
-    beforeBg: 'bg-amber-200',
-    afterBg: 'bg-sky-200',
-    initialPosition: 50,
-  },
-  {
-    title: 'Interieur renovatie Rotterdam',
-    description: 'Airless latex spuitwerk woonkamer en hal. Streeploze afwerking in één dag.',
-    beforeBg: 'bg-stone-300',
-    afterBg: 'bg-slate-200',
-    initialPosition: 40,
-  },
-  {
-    title: 'Gevel appartementencomplex',
-    description: 'Buitenschilderwerk van een volledig appartementencomplex in Den Haag.',
-    beforeBg: 'bg-orange-200',
-    afterBg: 'bg-blue-100',
-    initialPosition: 55,
-  },
-];
+import { projects } from './projectsData';
 
 export default function BeforeAfterSection() {
   return (
@@ -44,31 +22,31 @@ export default function BeforeAfterSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <BeforeAfterSlider
-              key={project.title}
+              key={project.slug}
               title={project.title}
               description={project.description}
+              href={`/projecten/${project.slug}`}
               beforeBg={project.beforeBg}
               afterBg={project.afterBg}
+              beforeImage={project.beforeImage}
+              afterImage={project.afterImage}
+              afterImageClassName={project.afterImageClassName}
               initialPosition={project.initialPosition}
             />
           ))}
         </div>
 
-        {/* Info banner */}
-        <div className="mt-12 bg-[#1a3a6b]/5 border border-[#1a3a6b]/15 rounded-xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <div className="w-10 h-10 bg-[#f59e0b]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg width="20" height="20" fill="none" stroke="#f59e0b" strokeWidth="2" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="8" x2="12" y2="12"/>
-              <line x1="12" y1="16" x2="12.01" y2="16"/>
+        {/* View all projects */}
+        <div className="text-center mt-12">
+          <Link
+            href="/projecten"
+            className="inline-flex items-center gap-2 bg-[#1a3a6b] hover:bg-[#0f2347] text-white font-bold px-8 py-4 rounded-md transition-all duration-200 hover:-translate-y-0.5 shadow-md"
+          >
+            Bekijk al onze projecten
+            <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </div>
-          <div>
-            <p className="font-semibold text-[#1a3a6b] text-sm">Eigen foto&apos;s plaatsen?</p>
-            <p className="text-gray-500 text-sm mt-0.5">
-              De grijze placeholders worden eenvoudig vervangen door echte voor- en nafoto&apos;s van uw uitgevoerde projecten.
-            </p>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

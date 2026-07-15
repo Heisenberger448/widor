@@ -11,8 +11,22 @@ export default function Hero() {
         }}
       />
 
-      {/* Gradient: stronger on left, fades right */}
-      <div className="absolute inset-0 bg-linear-to-r from-[#0f2347] via-[#1a3a6b]/90 to-[#1a3a6b]/60" />
+      {/* Photo on the right — brush-swept diagonal edge into the blue */}
+      <div
+        className="hidden lg:block absolute inset-y-0 right-0 w-[62%] bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/home-hero.jpg')",
+          WebkitMaskImage: "url('/brush-mask.svg')",
+          maskImage: "url('/brush-mask.svg')",
+          WebkitMaskSize: '100% 100%',
+          maskSize: '100% 100%',
+          WebkitMaskRepeat: 'no-repeat',
+          maskRepeat: 'no-repeat',
+        }}
+      />
+
+      {/* Gradient: dark on the left for text legibility, clears on the right so the photo shows */}
+      <div className="absolute inset-0 bg-linear-to-r from-[#0f2347] from-25% via-[#1a3a6b]/80 via-55% to-transparent to-80%" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-28 md:py-36">
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
