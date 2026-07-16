@@ -1,4 +1,4 @@
-import HeroWizard from './HeroWizard';
+import PriceWizard from './PriceWizard';
 
 export default function Hero() {
   return (
@@ -33,12 +33,6 @@ export default function Hero() {
 
           {/* Left — hero text */}
           <div>
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#f59e0b]/20 border border-[#f59e0b]/40 text-[#f59e0b] text-sm font-semibold px-4 py-2 rounded-full mb-6">
-              <span className="w-2 h-2 bg-[#f59e0b] rounded-full animate-pulse" />
-              Actief in Zuid-Holland
-            </div>
-
             <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-5">
               Professioneel
               <span className="block text-[#f59e0b]">schilderwerk</span>
@@ -89,7 +83,7 @@ export default function Hero() {
 
           {/* Right — price wizard */}
           <div className="flex justify-center lg:justify-end">
-            <HeroWizard />
+            <PriceWizard />
           </div>
 
         </div>

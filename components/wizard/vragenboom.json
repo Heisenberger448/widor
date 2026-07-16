@@ -1,0 +1,225 @@
+{
+  "meta": {
+    "name": "WIDOR prijsindicatie-wizard",
+    "version": "3.0.0",
+    "language": "nl-NL",
+    "currency": "EUR",
+    "purpose": "Beknopte vragenboom die verzamelt wat er geschilderd moet worden voor een globale prijsindicatie.",
+    "disclaimer": "De uitkomst is een vrijblijvende indicatie en geen definitieve offerte. De beste aanpak en de exacte prijs bepalen wij tijdens een gratis opname op locatie."
+  },
+  "flow": [
+    "property_context",
+    "work_scope",
+    "component_selection",
+    "component_details",
+    "photos",
+    "planning",
+    "region",
+    "remarks",
+    "review",
+    "lead_capture"
+  ],
+  "steps": {
+    "start": {
+      "title": "Prijsindicatie in een paar minuten",
+      "questions": [
+        { "id": "START_CONFIRM", "text": "Wilt u een vrijblijvende prijsindicatie berekenen?", "type": "single_choice", "required": true,
+          "options": [ { "value": "start", "label": "Ja, start mijn prijsindicatie" } ] }
+      ]
+    },
+    "property_context": {
+      "title": "Uw project",
+      "questions": [
+        { "id": "PROP_TYPE", "text": "Waar hebben de werkzaamheden betrekking op?", "type": "single_choice", "required": true,
+          "options": [ {"value":"home","label":"Woning"}, {"value":"business","label":"Bedrijfspand"}, {"value":"vve","label":"Appartementencomplex of VvE"}, {"value":"other","label":"Iets anders, namelijk:","allow_text":true,"text_id":"PROP_TYPE_OTHER","text_placeholder":"Bijv. een kast of tuinhek"} ] },
+        { "id": "VVE_UNITS", "text": "Om hoeveel woningen of appartementen gaat het ongeveer?", "type": "number", "required": true,
+          "show_if": { "all": [ { "field": "PROP_TYPE", "equals": "vve" } ] }, "min": 1 }
+      ]
+    },
+    "work_scope": {
+      "title": "Binnen of buiten",
+      "questions": [
+        { "id": "WORK_SCOPE", "text": "Waar moet er geschilderd worden?", "type": "single_choice", "required": true,
+          "options": [ {"value":"inside","label":"Binnen"}, {"value":"outside","label":"Buiten"}, {"value":"both","label":"Binnen en buiten"} ] }
+      ]
+    },
+    "component_selection": {
+      "title": "Wat moet er geschilderd worden?",
+      "questions": [
+        { "id": "INSIDE_COMPONENTS", "text": "Wat wilt u binnen laten schilderen?", "type": "multi_choice", "required": true,
+          "options": [ {"value":"walls","label":"Muren"}, {"value":"ceilings","label":"Plafonds"}, {"value":"inside_window_frames","label":"Raamkozijnen"}, {"value":"inside_doors","label":"Deuren en deurkozijnen"}, {"value":"radiators","label":"Radiatoren"}, {"value":"stairs","label":"Trap"}, {"value":"skirting","label":"Plinten"}, {"value":"other_inside","label":"Iets anders"} ],
+          "show_if": { "any": [ { "field": "WORK_SCOPE", "equals": "inside" }, { "field": "WORK_SCOPE", "equals": "both" } ] } },
+        { "id": "OUTSIDE_COMPONENTS", "text": "Wat wilt u buiten laten schilderen?", "type": "multi_choice", "required": true,
+          "options": [ {"value":"outside_window_frames","label":"Raamkozijnen"}, {"value":"outside_doors","label":"Buitendeuren"}, {"value":"fascia","label":"Boeidelen en daklijsten"}, {"value":"dormer","label":"Dakkapel"}, {"value":"cladding","label":"Houten gevel of betimmering"}, {"value":"painted_masonry","label":"Geschilderde stenen gevel"}, {"value":"garage_door","label":"Garage- of schuurdeur"}, {"value":"other_outside","label":"Iets anders"} ],
+          "show_if": { "any": [ { "field": "WORK_SCOPE", "equals": "outside" }, { "field": "WORK_SCOPE", "equals": "both" } ] } }
+      ]
+    },
+    "component_details": {
+      "title": "Hoeveelheden",
+      "module_order": [ "walls", "ceilings", "combined_window_frames", "inside_window_frames", "outside_window_frames", "inside_doors", "outside_doors", "radiators", "stairs", "skirting", "fascia", "dormer", "cladding", "painted_masonry", "garage_door", "other_inside", "other_outside" ]
+    },
+    "photos": {
+      "title": "Foto's (optioneel)",
+      "questions": [
+        { "id": "COMPONENT_PHOTOS", "text": "Wilt u foto's toevoegen van de onderdelen? Dat helpt ons om een betere inschatting te maken.", "type": "component_photos", "required": false }
+      ]
+    },
+    "planning": {
+      "title": "Planning",
+      "questions": [
+        { "id": "DESIRED_PERIOD", "text": "Wanneer wilt u het schilderwerk laten uitvoeren?", "type": "single_choice", "required": true,
+          "options": [ {"value":"asap","label":"Zo snel mogelijk"}, {"value":"three_months","label":"Binnen drie maanden"}, {"value":"six_months","label":"Binnen zes maanden"}, {"value":"later","label":"Later"}, {"value":"orientation","label":"Ik oriënteer me alleen"} ] }
+      ]
+    },
+    "region": {
+      "title": "Regio",
+      "questions": [
+        { "id": "REGION", "text": "In welke regio moeten de werkzaamheden worden uitgevoerd?", "type": "region_map", "required": true,
+          "postcode_id": "REGION_POSTCODE" }
+      ]
+    },
+    "remarks": {
+      "title": "Opmerkingen",
+      "questions": [
+        { "id": "NOTES", "text": "Heeft u nog opmerkingen of aanvullende informatie?", "type": "remarks", "required": true, "multiline": true,
+          "hint": "Bijvoorbeeld bijzondere wensen, gewenste kleuren of aandachtspunten." }
+      ]
+    },
+    "review": {
+      "title": "Controleer uw keuzes",
+      "questions": [
+        { "id": "PROJECT_SUMMARY", "text": "Controleer uw keuzes voordat u de indicatie ontvangt.", "type": "summary", "required": true }
+      ]
+    },
+    "lead_capture": {
+      "title": "Ontvang uw prijsindicatie",
+      "questions": [
+        { "id": "EMAIL", "text": "Naar welk e-mailadres mogen wij uw prijsindicatie sturen?", "type": "text", "required": true, "format": "email",
+          "showProcess": true,
+          "hint": "U ontvangt binnen 1 werkdag een vrijblijvende prijsindicatie per e-mail." }
+      ]
+    }
+  },
+  "modules": {
+    "walls": {
+      "activation": { "field": "INSIDE_COMPONENTS", "includes": "walls" },
+      "title": "Muren",
+      "questions": [
+        { "id": "WALL_TOTAL_M2", "text": "Hoeveel vierkante meter muur is het ongeveer?", "type": "decimal", "required": true, "unit": "m²", "min": 0, "hint": "Een grove schatting is prima — wij bepalen de beste aanpak tijdens de opname." }
+      ]
+    },
+    "ceilings": {
+      "activation": { "field": "INSIDE_COMPONENTS", "includes": "ceilings" },
+      "title": "Plafonds",
+      "questions": [
+        { "id": "CEILING_TOTAL_M2", "text": "Hoeveel vierkante meter plafond is het ongeveer?", "type": "decimal", "required": true, "unit": "m²", "min": 0, "hint": "Tip: het plafondoppervlak is meestal gelijk aan het vloeroppervlak." }
+      ]
+    },
+    "combined_window_frames": {
+      "activation": { "all": [ { "field": "INSIDE_COMPONENTS", "includes": "inside_window_frames" }, { "field": "OUTSIDE_COMPONENTS", "includes": "outside_window_frames" } ] },
+      "title": "Raamkozijnen",
+      "questions": [
+        { "id": "FRAME_COUNT", "text": "Hoeveel raamkozijnen betreft het in totaal (binnen + buiten)?", "type": "number", "required": true, "min": 1 }
+      ]
+    },
+    "inside_window_frames": {
+      "activation": { "all": [ { "field": "INSIDE_COMPONENTS", "includes": "inside_window_frames" }, { "field": "OUTSIDE_COMPONENTS", "not_includes": "outside_window_frames" } ] },
+      "title": "Raamkozijnen binnen",
+      "questions": [
+        { "id": "IWF_COUNT", "text": "Hoeveel raamkozijnen moeten binnen worden geschilderd?", "type": "number", "required": true, "min": 1 }
+      ]
+    },
+    "outside_window_frames": {
+      "activation": { "all": [ { "field": "OUTSIDE_COMPONENTS", "includes": "outside_window_frames" }, { "field": "INSIDE_COMPONENTS", "not_includes": "inside_window_frames" } ] },
+      "title": "Raamkozijnen buiten",
+      "questions": [
+        { "id": "OWF_COUNT", "text": "Hoeveel raamkozijnen moeten buiten worden geschilderd?", "type": "number", "required": true, "min": 1 }
+      ]
+    },
+    "inside_doors": {
+      "activation": { "field": "INSIDE_COMPONENTS", "includes": "inside_doors" },
+      "title": "Deuren binnen",
+      "questions": [
+        { "id": "ID_COUNT", "text": "Hoeveel binnendeuren moeten worden geschilderd?", "type": "number", "required": true, "min": 1 }
+      ]
+    },
+    "outside_doors": {
+      "activation": { "field": "OUTSIDE_COMPONENTS", "includes": "outside_doors" },
+      "title": "Buitendeuren",
+      "questions": [
+        { "id": "OD_COUNT", "text": "Hoeveel buitendeuren moeten worden geschilderd?", "type": "number", "required": true, "min": 1 }
+      ]
+    },
+    "radiators": {
+      "activation": { "field": "INSIDE_COMPONENTS", "includes": "radiators" },
+      "title": "Radiatoren",
+      "questions": [
+        { "id": "RAD_COUNT", "text": "Hoeveel radiatoren moeten worden geschilderd?", "type": "number", "required": true, "min": 1 }
+      ]
+    },
+    "stairs": {
+      "activation": { "field": "INSIDE_COMPONENTS", "includes": "stairs" },
+      "title": "Trap",
+      "questions": [
+        { "id": "STAIR_COUNT", "text": "Hoeveel trappen moeten worden geschilderd?", "type": "number", "required": true, "min": 1 }
+      ]
+    },
+    "skirting": {
+      "activation": { "field": "INSIDE_COMPONENTS", "includes": "skirting" },
+      "title": "Plinten",
+      "questions": [
+        { "id": "SKIRT_METERS", "text": "Hoeveel meter plint is het ongeveer?", "type": "decimal", "required": true, "unit": "m", "min": 0 }
+      ]
+    },
+    "fascia": {
+      "activation": { "field": "OUTSIDE_COMPONENTS", "includes": "fascia" },
+      "title": "Boeidelen en daklijsten",
+      "questions": [
+        { "id": "FASCIA_METERS", "text": "Hoeveel strekkende meter is het ongeveer?", "type": "decimal", "required": true, "unit": "m", "min": 0 }
+      ]
+    },
+    "dormer": {
+      "activation": { "field": "OUTSIDE_COMPONENTS", "includes": "dormer" },
+      "title": "Dakkapel",
+      "questions": [
+        { "id": "DORMER_COUNT", "text": "Hoeveel dakkapellen moeten worden geschilderd?", "type": "number", "required": true, "min": 1 }
+      ]
+    },
+    "cladding": {
+      "activation": { "field": "OUTSIDE_COMPONENTS", "includes": "cladding" },
+      "title": "Houten gevel of betimmering",
+      "questions": [
+        { "id": "CLADDING_M2", "text": "Hoeveel vierkante meter is het ongeveer?", "type": "decimal", "required": true, "unit": "m²", "min": 0 }
+      ]
+    },
+    "painted_masonry": {
+      "activation": { "field": "OUTSIDE_COMPONENTS", "includes": "painted_masonry" },
+      "title": "Geschilderde stenen gevel",
+      "questions": [
+        { "id": "MASONRY_M2", "text": "Hoeveel vierkante meter gevel is het ongeveer?", "type": "decimal", "required": true, "unit": "m²", "min": 0 }
+      ]
+    },
+    "garage_door": {
+      "activation": { "field": "OUTSIDE_COMPONENTS", "includes": "garage_door" },
+      "title": "Garage- of schuurdeur",
+      "questions": [
+        { "id": "GARAGE_COUNT", "text": "Hoeveel garage- of schuurdeuren moeten worden geschilderd?", "type": "number", "required": true, "min": 1 }
+      ]
+    },
+    "other_inside": {
+      "activation": { "field": "INSIDE_COMPONENTS", "includes": "other_inside" },
+      "title": "Overig binnenwerk",
+      "questions": [
+        { "id": "OTHER_INSIDE_DESCRIPTION", "text": "Wat wilt u binnen nog meer laten schilderen?", "type": "text", "required": true, "multiline": true }
+      ]
+    },
+    "other_outside": {
+      "activation": { "field": "OUTSIDE_COMPONENTS", "includes": "other_outside" },
+      "title": "Overig buitenwerk",
+      "questions": [
+        { "id": "OTHER_OUTSIDE_DESCRIPTION", "text": "Wat wilt u buiten nog meer laten schilderen?", "type": "text", "required": true, "multiline": true }
+      ]
+    }
+  },
+  "orchestration_rules": []
+}

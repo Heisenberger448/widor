@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { services } from './servicesData';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -14,7 +16,6 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { href: '/#diensten', label: 'Diensten' },
     { href: '/#projecten', label: 'Projecten' },
     { href: '/#over-ons', label: 'Over ons' },
     { href: '/#reviews', label: 'Reviews' },
@@ -44,11 +45,38 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
+            {/* Diensten dropdown */}
+            <div className="relative group">
+              <a
+                href="/#diensten"
+                className="flex items-center gap-1 text-[#1a3a6b]/70 hover:text-[#f59e0b] font-medium text-sm transition-colors duration-200"
+              >
+                Diensten
+                <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24" className="mt-0.5 transition-transform duration-200 group-hover:rotate-180">
+                  <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+              {/* Panel — pt-3 bridges the gap so hover doesn't drop */}
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block group-focus-within:block z-50">
+                <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-60">
+                  {services.map((service) => (
+                    <Link
+                      key={service.slug}
+                      href={`/diensten/${service.slug}`}
+                      className="block px-4 py-2.5 text-sm font-medium text-[#1a3a6b]/80 hover:bg-[#1a3a6b]/5 hover:text-[#f59e0b] transition-colors"
+                    >
+                      {service.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[#1a3a6b]/70 hover:text-[#1a3a6b] font-medium text-sm transition-colors duration-200 hover:text-[#f59e0b]"
+                className="text-[#1a3a6b]/70 hover:text-[#f59e0b] font-medium text-sm transition-colors duration-200"
               >
                 {link.label}
               </a>
@@ -93,6 +121,34 @@ export default function Navbar() {
         {isOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
             <nav className="flex flex-col gap-4 mt-4">
+              {/* Diensten met uitklapbare submenu */}
+              <div>
+                <button
+                  onClick={() => setServicesOpen((o) => !o)}
+                  className="w-full flex items-center justify-between text-[#1a3a6b]/70 hover:text-[#f59e0b] font-medium py-1"
+                  aria-expanded={servicesOpen}
+                >
+                  Diensten
+                  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`}>
+                    <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                {servicesOpen && (
+                  <div className="mt-2 ml-2 flex flex-col gap-2 border-l-2 border-gray-100 pl-4">
+                    {services.map((service) => (
+                      <Link
+                        key={service.slug}
+                        href={`/diensten/${service.slug}`}
+                        className="text-[#1a3a6b]/60 hover:text-[#f59e0b] text-sm py-1"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {service.title}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               {links.map((link) => (
                 <a
                   key={link.href}

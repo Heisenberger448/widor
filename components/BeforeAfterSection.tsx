@@ -14,7 +14,8 @@ export default function BeforeAfterSection() {
           </h2>
           <p className="mt-4 text-gray-500 text-lg leading-relaxed">
             Sleep de schuifknop om het verschil te zien tussen vóór en na ons schilderwerk.
-            Placeholders worden vervangen door echte foto&apos;s van uw projecten.
+            Van verweerde kozijnen en gevels tot een strak, duurzaam eindresultaat — ontdek
+            wat vakwerk voor uw pand betekent.
           </p>
         </div>
 
