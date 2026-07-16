@@ -16,9 +16,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const service = getService(slug);
-  if (!service) return { title: 'Dienst niet gevonden – WIDOR Schildersbedrijf' };
+  if (!service) return { title: 'Dienst niet gevonden – VAK Schilderwerken' };
   return {
-    title: `${service.title} – WIDOR Schildersbedrijf`,
+    title: `${service.title} – VAK Schilderwerken`,
     description: service.description,
   };
 }

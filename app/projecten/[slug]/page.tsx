@@ -17,9 +17,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
-  if (!project) return { title: 'Project niet gevonden – WIDOR Schildersbedrijf' };
+  if (!project) return { title: 'Project niet gevonden – VAK Schilderwerken' };
   return {
-    title: `${project.title} – WIDOR Schildersbedrijf`,
+    title: `${project.title} – VAK Schilderwerken`,
     description: project.description,
   };
 }

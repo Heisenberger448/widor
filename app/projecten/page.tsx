@@ -6,9 +6,9 @@ import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 import { projects } from '@/components/projectsData';
 
 export const metadata: Metadata = {
-  title: 'Projecten – WIDOR Schildersbedrijf',
+  title: 'Projecten – VAK Schilderwerken',
   description:
-    'Bekijk uitgevoerde schilderprojecten van WIDOR Schildersbedrijf in Zuid-Holland. Voor & na — zie het verschil zelf.',
+    'Bekijk uitgevoerde schilderprojecten van VAK Schilderwerken in Zuid-Holland. Voor & na — zie het verschil zelf.',
 };
 
 export default function ProjectenPage() {

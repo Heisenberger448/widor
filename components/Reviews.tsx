@@ -17,14 +17,14 @@ const reviews = [
     name: 'Peter van Dam',
     location: 'Delft',
     rating: 5,
-    text: 'WIDOR heeft onze complete gevel geschilderd. Goede kwaliteit, mooie prijs en nakomen van afspraken. Echt aanrader voor iedereen in de regio.',
+    text: 'VAK heeft onze complete gevel geschilderd. Goede kwaliteit, mooie prijs en nakomen van afspraken. Echt aanrader voor iedereen in de regio.',
     date: 'Maart 2026',
   },
   {
     name: 'Sandra Hoekstra',
     location: 'Zoetermeer',
     rating: 5,
-    text: 'Betrouwbaar, netjes op tijd en alles ziet er weer strak uit! Het latex spuitwerk is perfect egaal geworden. Voortaan altijd WIDOR.',
+    text: 'Betrouwbaar, netjes op tijd en alles ziet er weer strak uit! Het latex spuitwerk is perfect egaal geworden. Voortaan altijd VAK.',
     date: 'Februari 2026',
   },
   {

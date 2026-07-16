@@ -17,8 +17,8 @@ export default function Footer() {
                 </svg>
               </div>
               <div>
-                <p className="font-black text-lg">WIDOR</p>
-                <p className="text-[#f59e0b] text-xs tracking-widest uppercase">Schildersbedrijf</p>
+                <p className="font-black text-lg">VAK</p>
+                <p className="text-[#f59e0b] text-xs tracking-widest uppercase">Schilderwerken</p>
               </div>
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
@@ -112,7 +112,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-white/40 text-xs">
-            © {currentYear} WIDOR Schildersbedrijf. Alle rechten voorbehouden.
+            © {currentYear} VAK Schilderwerken. Alle rechten voorbehouden.
           </p>
           <div className="flex gap-4">
             <a href="#" className="text-white/40 hover:text-white/70 text-xs transition-colors">Privacybeleid</a>

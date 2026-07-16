@@ -13,7 +13,7 @@ export default function Services() {
             Alles voor het perfecte schilderwerk
           </h2>
           <p className="mt-4 text-gray-500 text-lg leading-relaxed">
-            Van binnen tot buiten, van woonhuis tot bedrijfspand. WIDOR heeft de expertise en
+            Van binnen tot buiten, van woonhuis tot bedrijfspand. VAK heeft de expertise en
             het materiaal voor elk project in Zuid-Holland.
           </p>
         </div>

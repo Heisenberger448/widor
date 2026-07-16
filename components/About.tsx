@@ -66,12 +66,12 @@ export default function About() {
         {/* Two columns */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-[#f59e0b] font-bold uppercase tracking-widest text-sm mb-3">Over WIDOR</p>
+            <p className="text-[#f59e0b] font-bold uppercase tracking-widest text-sm mb-3">Over VAK</p>
             <h2 className="text-3xl sm:text-4xl font-black text-[#1a3a6b] leading-tight mb-6">
               Vakmannen met passie voor het vak
             </h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              WIDOR Schildersbedrijf is actief in heel Zuid-Holland. Met meer dan 20 jaar ervaring in
+              VAK Schilderwerken is actief in heel Zuid-Holland. Met meer dan 20 jaar ervaring in
               zowel woning- als bedrijfsschilderwerk leveren wij kwaliteit die zichtbaar blijft.
             </p>
             <p className="text-gray-600 leading-relaxed mb-6">

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "WIDOR Schildersbedrijf – Professioneel schilderwerk in Zuid-Holland",
+  title: "VAK Schilderwerken – Professioneel schilderwerk in Zuid-Holland",
   description:
-    "WIDOR Schildersbedrijf verzorgt professioneel schilderwerk binnen en buiten in heel Zuid-Holland. Gratis offerte op locatie. Meer dan 20 jaar ervaring.",
+    "VAK Schilderwerken verzorgt professioneel schilderwerk binnen en buiten in heel Zuid-Holland. Gratis offerte op locatie. Meer dan 20 jaar ervaring.",
   keywords: "schildersbedrijf, schilder, Zuid-Holland, binnenschilderwerk, buitenschilderwerk, latex spuiten",
 };
 

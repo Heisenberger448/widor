@@ -22,7 +22,7 @@ export const services: Service[] = [
       'Muren, plafonds, kozijnen en deuren — wij zorgen voor een strakke en duurzame afwerking in uw woning of bedrijfspand.',
     image: '/binnenschilder.png',
     intro:
-      'Een frisse laag verf geeft uw interieur direct een nieuwe uitstraling. WIDOR verzorgt compleet binnenschilderwerk: van het grondig voorbereiden van de ondergrond tot een strakke, egale eindlaag die jarenlang mooi blijft.',
+      'Een frisse laag verf geeft uw interieur direct een nieuwe uitstraling. VAK verzorgt compleet binnenschilderwerk: van het grondig voorbereiden van de ondergrond tot een strakke, egale eindlaag die jarenlang mooi blijft.',
     points: [
       'Muren en plafonds strak en egaal geschilderd',
       'Kozijnen, deuren en trappen in de kleur naar keuze',
@@ -43,7 +43,7 @@ export const services: Service[] = [
       'Gevels, daklijsten, kozijnen en deuren buiten. Bescherm uw woning tegen de elementen met professioneel buitenschilderwerk.',
     image: '/buitenschilder.png',
     intro:
-      'Buitenschilderwerk is meer dan alleen kleur — het beschermt uw woning tegen regen, wind en zon. WIDOR gebruikt hoogwaardige verfsystemen en werkt volgens een vaste methode zodat houtrot geen kans krijgt en het resultaat jarenlang meegaat.',
+      'Buitenschilderwerk is meer dan alleen kleur — het beschermt uw woning tegen regen, wind en zon. VAK gebruikt hoogwaardige verfsystemen en werkt volgens een vaste methode zodat houtrot geen kans krijgt en het resultaat jarenlang meegaat.',
     points: [
       'Gevels, kozijnen, deuren en daklijsten',
       'Houtrot herstellen en aangetast hout vervangen',
@@ -105,7 +105,7 @@ export const services: Service[] = [
     description:
       'Periodiek onderhoud verlengt de levensduur van uw schilderwerk aanzienlijk. Wij stellen een onderhoudsplan op maat op.',
     intro:
-      'Regelmatig onderhoud voorkomt dure reparaties en houdt uw pand jarenlang in topconditie. WIDOR stelt een onderhoudsplan op maat op, zodat schilderwerk en houtwerk op het juiste moment worden aangepakt — voordat schade ontstaat.',
+      'Regelmatig onderhoud voorkomt dure reparaties en houdt uw pand jarenlang in topconditie. VAK stelt een onderhoudsplan op maat op, zodat schilderwerk en houtwerk op het juiste moment worden aangepakt — voordat schade ontstaat.',
     points: [
       'Onderhoudsplan afgestemd op uw pand',
       'Tijdig bijwerken voorkomt houtrot en schade',
@@ -126,10 +126,10 @@ export const services: Service[] = [
     slug: 'bedrijfspanden',
     title: 'Bedrijfspanden',
     description:
-      'Van kantoor tot winkel — WIDOR verzorgt ook commercieel schilderwerk snel en netjes, met minimale overlast voor uw bedrijfsvoering.',
+      'Van kantoor tot winkel — VAK verzorgt ook commercieel schilderwerk snel en netjes, met minimale overlast voor uw bedrijfsvoering.',
     image: '/bedrijfspanden.png',
     intro:
-      'Voor bedrijfspanden telt elk uur. WIDOR werkt planmatig en flexibel — desnoods in de avond of het weekend — zodat uw bedrijfsvoering zo min mogelijk hinder ondervindt. Van kantoor en winkel tot bedrijfshal leveren wij strak en representatief werk.',
+      'Voor bedrijfspanden telt elk uur. VAK werkt planmatig en flexibel — desnoods in de avond of het weekend — zodat uw bedrijfsvoering zo min mogelijk hinder ondervindt. Van kantoor en winkel tot bedrijfshal leveren wij strak en representatief werk.',
     points: [
       'Kantoren, winkels, horeca en bedrijfshallen',
       'Werk buiten openingstijden of in het weekend mogelijk',

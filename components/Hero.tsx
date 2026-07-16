@@ -40,7 +40,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-base text-white/75 leading-relaxed mb-7 max-w-lg">
-              WIDOR Schildersbedrijf verzorgt kwalitatief schilderwerk binnen en buiten in heel
+              VAK Schilderwerken verzorgt kwalitatief schilderwerk binnen en buiten in heel
               Zuid-Holland. Van kozijnen en gevels tot volledige interieurs — wij leveren
               strak en duurzaam werk.
             </p>
